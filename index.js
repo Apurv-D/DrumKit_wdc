@@ -1,24 +1,21 @@
-var buttons = document.querySelectorAll(".drum").length;
-// console.log(buttons);
+var lengthOfArray = document.querySelectorAll(".drum").length;
 
-for(var i=0; i<buttons; i++){
-    document.querySelectorAll("button")[i].addEventListener("click", handleClick);
+for(var i = 0;i<lengthOfArray;i++){
+    document.querySelectorAll(".drum")[i].addEventListener("click",function(){
+        playSounds(this.textContent);
+        animation(this.textContent);
+    });
 }
 
-function handleClick(){
-    
-    var key = this.innerHTML;
-    makeSound(key);
-    buttonPress(key);
+for(var i = 0;i<lengthOfArray;i++){
+    document.querySelectorAll(".drum")[i].addEventListener("keydown",function(evt){
+        playSounds(evt.key);
+        animation(evt.key);
+    });
 }
 
 
-document.addEventListener("keydown", function(event){
-    makeSound(event.key);
-    buttonPress(event.key);
-})
-
-function makeSound(key){
+function playSounds(key){
     switch (key) {
         case "w":
             var audio = new Audio('sounds/tom-1.mp3');
@@ -50,16 +47,14 @@ function makeSound(key){
             break;
     
         default:
-            console.log(key);
             break;
     }
 }
 
-function buttonPress(currentkey){
-    var pressedkey = document.querySelector("."+currentkey);
-    pressedkey.classList.add("pressed");
-
+function animation(cls){
+    document.querySelector("."+cls).classList.add("pressed");
     setTimeout(function(){
-        pressedkey.classList.remove("pressed");
-    }, 100);
+        document.querySelector("."+cls).classList.remove("pressed");
+    },100)
+    
 }
