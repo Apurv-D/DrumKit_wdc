@@ -1,6 +1,7 @@
 var buttons = document.querySelectorAll(".drum").length;
-// console.log(buttons);
 
+
+// for click input 
 for(var i=0; i<buttons; i++){
     document.querySelectorAll("button")[i].addEventListener("click", handleClick);
 }
@@ -13,10 +14,15 @@ function handleClick(){
 }
 
 
+// for keyboard input 
+
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
     buttonPress(event.key);
 })
+
+
+// function to play sound 
 
 function makeSound(key){
     switch (key) {
@@ -54,6 +60,9 @@ function makeSound(key){
             break;
     }
 }
+
+
+// function to add button press animation
 
 function buttonPress(currentkey){
     var pressedkey = document.querySelector("."+currentkey);
